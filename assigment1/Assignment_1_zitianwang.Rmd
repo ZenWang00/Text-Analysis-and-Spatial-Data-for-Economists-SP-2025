@@ -1,0 +1,192 @@
+---
+title: "Text Analysis and Spatial Data for Economists"
+subtitle: "Assignment 1"
+author: zitian wang
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  html_document:
+  toc: yes
+toc_float: true
+toc_collapsed: true
+--- 
+
+```{r setup, include=T , message = F}
+# Load first the libraries you will need
+library(sf)
+library(readr)
+library(ggplot2)
+library(dplyr)
+library(leaflet)
+library(RColorBrewer)
+```
+
+
+# Spatial operations
+
+For this exercise, we will need first to import the file `swissBOUNDARIES3D_1_5_TLM_HOHEITSGEBIET.shp` containing the municipality boundary (do not use the file `swissBOUNDARIES3D_1_5_TLM_HOHEITSGRENZE.shp`) and the `.csv` file on housing price we used in the last exercise session.
+
+To avoid issues with this exercise, you should remove the `Z` geometry (altitude of the point) of your municipality boundary object using the function `st_zm(your municipality object, drop = TRUE)`. Do not forget to save this as a new object.
+```{r}
+municipality <- st_read("/Users/zitian/Downloads/swissboundaries3d_2025-01_2056_5728.shp/swissBOUNDARIES3D_1_5_TLM_HOHEITSGEBIET.shp")
+housing_data <- read_csv("/Users/zitian/Downloads/hp_small.csv")
+municipality <- st_zm(municipality, drop = TRUE)
+```
+
+## Simplification
+
+The municipality boundary contains a detailed (hence precise) geometry but uses a lot of memory such that you might want to simplify it first. 
+
+In also contains several variables that might not be directly of use.
+
+* Look at the object size using `object.size()`
+* Look at the structure of the object. Could you guess which attributes might not be useful? 
+  + select only the attributes related to the name of the municipality ('NAME'), its population ('EINWOHNERZ'), area ('GEM_FLAECH'), identification number ('BFS_NUMMER') and the canton ('KANTONSNUM').
+
+
+```{r}
+print(object.size(municipality), units = "Mb")
+str(municipality)
+municipality_select <- municipality[, c("NAME", "EINWOHNERZ", "GEM_FLAECH", "BFS_NUMMER", "KANTONSNUM")]
+```
+
+
+* Simplify the geometry using your preferred simplification method.
+  + Check the CRS of the data first and the units of measure.
+  + Save your preferred result in a new object (e.g. 'mun_simple')
+
+
+```{r}
+print(st_crs(municipality_select))
+
+mun_simple <- st_simplify(municipality_select, dTolerance = 50)
+
+# Visualize overlay of simplified (green) and original (red dashed) geometries
+ggplot() +
+  geom_sf(data = mun_simple, fill = NA, color = "green", size = 0.5) +
+  geom_sf(data = municipality_select, fill = NA, color = "red", size = 1.5, linetype = "dashed", alpha = 0.8) +
+  labs(title = "Overlay of Simplified (Green) and Original (Red) Geometries") +
+  theme_minimal()
+
+```
+
+## Spatial join
+
+We would like now to compute the average housing price for all Swiss municipalities. To avoid outliers, we prefer to select only municipalities with at least 5 postings. 
+
+* Create a logical vector that identifies all municipalities with at least 5 postings.
+  + What should you do first?
+  + Which municipality object should you use, the original or the simplified one? Why?
+
+```{r}
+# Use CSV field 'bfscode1' to represent municipality identifier
+posting_counts <- table(housing_data$bfscode1)
+municipalities_with5 <- names(posting_counts)[posting_counts >= 5]
+print(municipalities_with5)
+```
+
+## Spatial subsetting
+
+* Create an object containing only municipalities with at least 5 postings.
+```{r}
+# Municipality data uses BFS_NUMMER while CSV uses bfscode1.
+mun5 <- mun_simple[mun_simple$BFS_NUMMER %in% municipalities_with5, ]
+```
+## Spatial aggregation
+
+* Compute the annual rental price per square meter (a_brutm_m2) per municipality (use the variable BFS_NUMMER to identify them) with at least 5 observations. First convert the variable a_brutm_m2 to numeric with, e.g., the function `type.convert(x, dec=".")`.
+
+```{r}
+# Convert rental price per square meter to numeric
+housing_data$a_brutm_m2 <- type.convert(housing_data$a_brutm_m2, dec = ".")
+# Aggregate average rental price by municipality identifier (using bfscode1 from CSV)
+avg_price <- aggregate(a_brutm_m2 ~ bfscode1, 
+                       data = housing_data[housing_data$bfscode1 %in% municipalities_with5, ], 
+                       FUN = mean)
+head(avg_price)
+```
+* Plot these municipalities
+
+```{r}
+# Municipality data uses BFS_NUMMER while CSV uses bfscode1.
+mun5 <- mun_simple[mun_simple$BFS_NUMMER %in% municipalities_with5, ]
+
+# Merge the aggregated average price (avg_price) with the spatial object.
+mun5_prices_agg <- merge(mun5, avg_price, by.x = "BFS_NUMMER", by.y = "bfscode1", all.x = TRUE)
+
+# Transform to WGS84 for leaflet (EPSG:4326)
+mun5_prices_agg_wgs <- st_transform(mun5_prices_agg, crs = 4326)
+
+# Define a color palette based on average rental price.
+pal <- colorQuantile("YlOrRd", domain = mun5_prices_agg_wgs$a_brutm_m2, n = 5)
+```
+
+```{r}
+# Create an interactive leaflet map.
+leaflet(data = mun5_prices_agg_wgs) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%  
+  addPolygons(
+    fillColor = ~pal(a_brutm_m2),  
+    fillOpacity = 0.7,
+    weight = 1,
+    color = "darkblue",
+    popup = ~paste0("<strong>Municipality: </strong>", NAME,
+                    "<br><strong>BFS: </strong>", BFS_NUMMER,
+                    "<br><strong>Price (per m²): </strong>", round(a_brutm_m2, 2))
+  ) %>%
+  setView(lng = 8.2275, lat = 46.8182, zoom = 8)
+```
+
+* Add to this object the corresponding housing prices 
+
+```{r}
+# Merge detailed housing data with spatial data (if needed for further analysis)
+mun5_prices <- merge(mun5, housing_data, by.x = "BFS_NUMMER", by.y = "bfscode1", all.x = TRUE)
+str(mun5_prices)
+```
+
+
+* Plot the average housing price per square meter 
+
+```{r}
+ggplot(mun5_prices_agg) +
+  geom_sf(aes(fill = a_brutm_m2)) +
+  labs(fill = "Average rental price\n(per square metre)") +
+  ggtitle("Average annual rental price per square metre in urban areas") +
+  theme_minimal()
+```
+
+
+## Distances
+
+Select all postings in the canton of Ticino that are located within a 1km distance of a municipality border
+  
+* How would you approach this problem? 
+* What information do you need?
+* **Think carefully at how distance are computed for different geometries**
+* Before doing any analysis, you should remove the `Z` geometry (altitude of the point) using the function `st_zm(your municipality object, drop = TRUE)` 
+
+```{r}
+housing_sf <- st_as_sf(housing_data, coords = c("longitude2", "latitude2"), crs = 4326)
+
+housing_sf <- st_transform(housing_sf, st_crs(mun_simple))
+
+mun_ti <- mun_simple[mun_simple$KANTONSNUM == 21, ]
+mun_ti_clean <- st_cast(mun_ti, "MULTIPOLYGON", warn = FALSE)
+
+ti_boundaries <- st_boundary(mun_ti_clean)
+ti_boundaries_union <- st_union(ti_boundaries)
+
+distances <- st_distance(housing_sf, ti_boundaries_union)
+min_distances <- as.numeric(distances)  
+
+print(summary(min_distances))
+
+housing_near_border <- housing_sf[min_distances <= 1000, ]
+
+plot(st_geometry(mun_ti_clean), main = "Properties in Ticino city centre and within 1km of the city boundary", col = "lightgreen")
+plot(st_geometry(housing_near_border), add = TRUE, col = "red", pch = 20, cex=0.8)
+
+```
+
+
+

@@ -1,0 +1,157 @@
+---
+title: "Text Analysis and Spatial Data for Economists"
+author: "Zitian Wang"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: null
+  toc: true
+  word_document: default
+subtitle: Assignment 2
+toc_float: true
+toc_collapsed: true
+--- 
+
+```{r setup, include=T , message = F}
+library(dplyr)
+library(mapview)
+library(sf)
+library(raster)
+library(readr)
+library(leaflet)
+```
+
+
+
+```{r, eval = FALSE, include = FALSE}
+# clean working environment
+rm(list = ls())
+```
+
+
+# Raster data
+
+## Getting raster data
+
+For this assignment, we will use the municipality boundary and the housing price data we have already used in the last assignment. 
+
+```{r}
+# Load here municipality boundary and housing prices from the previous assignment
+municipality <- st_read("/Users/zitian/Downloads/swissboundaries3d_2025-01_2056_5728.shp/swissBOUNDARIES3D_1_5_TLM_HOHEITSGEBIET.shp")
+housing_data <- read_csv("/Users/zitian/Downloads/hp_small.csv")
+```
+
+
+We will complement these data with two raster datasets:
+
++ Visit [https://www.swisstopo.admin.ch/en/geodata/height.html](https://www.swisstopo.admin.ch/en/geodata/height.html) and download the *Digital Height Model 25/200* for Switzerland.
+
+  + Read the file `DHM200.xyz` as a raster. Check its CRS and assign a value if needed. If this information is missing, retrieve the relevant CRS in the documentation and assign to your object using the function `crs(x) <- value`. Use an EPSG code as a `proj4string` definition with `"+init=epsg:MY_NUMBER"` (so the command is:  `crs(x) <- "+init=epsg:MY_NUMBER"`). You will probably get warnings while assigning the CRS. This is due to a migration from `proj4string` towards `PROJ6` standards. You can ignore these warnings.
+
+
+```{r}
+# Load the file DHM200.xyz from the Digital Height Model 25/200 for Switzerland
+# Assign the correct CRS if needed
+dhm <- raster("/Users/zitian/Downloads/data/DHM200.xyz")
+crs(dhm) <- "+init=epsg:21781"
+```
+
++ Visit [https://map.geo.admin.ch](https://map.geo.admin.ch) and downloard the daytime road traffic noise exposure from the Federal Office for the Environment.
+  
+  + Read the file `StrassenLaerm_Tag.tif` (that is in the folder `STRASSENLAERM_Tag` that you downloaded) as a raster. Check its CRS and assign a value if needed.
+
+```{r}
+# Load the file StrassenLaerm_Tag.tif
+noise_raster <- raster("/Users/zitian/Downloads/data (1)/STRASSENLAERM_Tag/STRASSENLAERM_Tag.tif")
+```
+
+
+## Raster extraction
+
++ Assign to the housing price data the level of noise exposure for that location. 
+
+```{r}
+# Step 1: reproject the vector object to the CRS of the raster datahousing_data_sf <- st_as_sf(
+housing_data_sf <- st_as_sf(
+  housing_data,
+  coords = c("longitude2", "latitude2"),  
+  crs = 4326                             
+)
+housing_data_sf <- st_transform(housing_data_sf, crs(noise_raster))
+
+# Step 2: extract the values for the corresponding raster's cell
+housing_data_sp <- as(housing_data_sf, "Spatial")
+housing_data$noise_exposure <- extract(noise_raster, housing_data_sp)
+```
+
+
+## Rasterization
+
++ Rasterize the dataset on housing prices to show the average price per square meters (`a_brutm_m2`) for grids of 1,000m x 1,000m 
+  + Create a raster template using housing price data. 
+  + Convert (`a_brutm_m2`) into numeric using the functions `as.numeric(as.character(x))`
+
+```{r}
+# Convert factor variable into numeric
+housing_data_sf$a_brutm_m2 <- as.numeric(as.character(housing_data_sf$a_brutm_m2))
+# Create raster template
+bbox <- st_bbox(housing_data_sf)  
+raster_template <- raster(xmn = bbox["xmin"], 
+                          xmx = bbox["xmax"], 
+                          ymn = bbox["ymin"], 
+                          ymx = bbox["ymax"], 
+                          res = 1000, 
+                          crs = st_crs(housing_data_sf)$proj4string)
+# Rasterize 
+r_price <- rasterize(housing_data_sp, raster_template, field = "a_brutm_m2", fun = mean)
+# Plot
+plot(r_price, main = "Average Price per m² (Rasterized)")
+# Interactive version of the rasterized average price map
+# Reproject r_price to WGS84 for interactive mapping
+r_price_wgs <- projectRaster(r_price, crs = CRS("+init=epsg:4326"))
+# Create a color palette for the raster values
+pal_price <- colorNumeric("YlOrRd", values(r_price_wgs), na.color = "transparent")
+leaflet() %>%
+  addTiles() %>%
+  addRasterImage(r_price_wgs, colors = pal_price, opacity = 0.8) %>%
+  addLegend(pal = pal_price, values = values(r_price_wgs), title = "Average Price per m²") %>%
+  setView(lng = 8.2275, lat = 46.8182, zoom = 8)
+```
+
+## Spatial vectorization
+
++ Create contour lines for 250, 500, 1000 and 2000 m.a.s.l for the digital height model. Use a mask to select only the data for Switzerland.
+  + Create a polygon for Switzerland based on the municipality boundary data. Remove the z geometry using `st_zm()` and reproject the data.
+  + Store the polygon as `Spatial` object (with `as(x,"Spatial")`).
+  + Create a mask for the the raster data
+  + Create contour lines for the desired levels (look at `?rasterToContour` to create the desired lines).
+
+```{r}
+# Create a polygon for Switzerland
+swiss_polygon <- st_union(municipality)
+swiss_polygon <- st_zm(swiss_polygon)
+swiss_polygon <- st_transform(swiss_polygon, crs = st_crs(dhm))
+swiss_polygon_sp <- as(swiss_polygon, "Spatial")
+# Create a mask for raster data
+dhm_mask <- mask(dhm, swiss_polygon_sp)
+# Create contour lines
+contour_levels <- c(250, 500, 1000, 2000)
+contours <- rasterToContour(dhm_mask, levels = contour_levels)
+```
+
++ Create a hillshade layer to use as a basemap for the noise data
+
+```{r}
+# Create a hill shade layer and mask cells outside Switzerland
+slope <- terrain(dhm, opt = "slope")
+aspect <- terrain(dhm, opt = "aspect")
+hillshade <- hillShade(slope, aspect, angle = 40, direction = 270)
+hillshade <- mask(hillshade, swiss_polygon_sp)
+# Plot the hillshade layer and noise data
+plot(
+  noise_raster,
+  main = "Hillshade with Noise Data",
+  legend.shrink = 0.8,
+  axis.args = list(cex.axis = 0.7, las = 1)
+)
+
+```
