@@ -1,0 +1,402 @@
+[
+  {
+    "name": "ABZ - Finanz- und Beteiligungsgesellschaft AG",
+    "ehraid": 619,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.866.787&lang=de&shabdatum=20090706",
+    "deleteDate": "2009-07-06",
+    "cs_hops": 1
+  },
+  {
+    "name": "Faminta AG",
+    "ehraid": 55686,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.833.750&lang=de&shabdatum=20080404",
+    "deleteDate": "2008-04-04",
+    "cs_hops": 1
+  },
+  {
+    "name": "Hochhaus zur Palme AG",
+    "ehraid": 81396,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.348.213&lang=de&shabdatum=20060706",
+    "deleteDate": "2006-07-06",
+    "cs_hops": 1
+  },
+  {
+    "name": "Immobilien-Gesellschaft Glarus",
+    "ehraid": 86933,
+    "legalSeat": "Glarus",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://gl.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.633.843&lang=de&shabdatum=20060706",
+    "deleteDate": "2006-07-06",
+    "cs_hops": 1
+  },
+  {
+    "name": "Veryfinance AG",
+    "ehraid": 201418,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.319.051&lang=de&shabdatum=20040817",
+    "deleteDate": "2004-08-17",
+    "cs_hops": 1
+  },
+  {
+    "name": "Limpa AG",
+    "ehraid": 304598,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.047.533&lang=de&shabdatum=20070504",
+    "deleteDate": "2007-05-04",
+    "cs_hops": 1
+  },
+  {
+    "name": "Innoventure Capital AG",
+    "ehraid": 367295,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.450.096&lang=de&shabdatum=20060403",
+    "deleteDate": "2006-04-03",
+    "cs_hops": 1
+  },
+  {
+    "name": "Credit Suisse IT Assets AG",
+    "ehraid": 387667,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-104.385.544&lang=de&shabdatum=20051110",
+    "deleteDate": "2005-11-10",
+    "cs_hops": 1
+  },
+  {
+    "name": "Credit Suisse",
+    "ehraid": 388854,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.841.036&lang=de&shabdatum=20050520",
+    "deleteDate": "2005-05-20",
+    "cs_hops": 1
+  },
+  {
+    "name": "FINANZ AG ZÜRICH",
+    "ehraid": 58666,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-107.853.493&lang=de&shabdatum=20020819",
+    "deleteDate": "2002-08-19",
+    "cs_hops": 2
+  },
+  {
+    "name": "Samag Zürich AG",
+    "ehraid": 159303,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-100.841.342&lang=de&shabdatum=20030730",
+    "deleteDate": "2003-07-30",
+    "cs_hops": 2
+  },
+  {
+    "name": "Schweizerische Schiffshypothekenbank",
+    "ehraid": 166252,
+    "legalSeat": "Basel",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://bs.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.933.320&lang=de&shabdatum=20040916",
+    "deleteDate": "2004-09-16",
+    "cs_hops": 2
+  },
+  {
+    "name": "Société Foncière du Grand-Pont S.A.",
+    "ehraid": 179341,
+    "legalSeat": "Lausanne",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://prestations.vd.ch/pub/101266/extract?lang=FR&companyOfsUid=CHE-100.317.638",
+    "deleteDate": "2004-11-16",
+    "cs_hops": 2
+  },
+  {
+    "name": "Credit Suisse Immobilien Leasing",
+    "ehraid": 402564,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-107.869.732&lang=de&shabdatum=20070427",
+    "deleteDate": "2007-04-27",
+    "cs_hops": 2
+  },
+  {
+    "name": "swissnetpay AG",
+    "ehraid": 421607,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-100.755.441&lang=de&shabdatum=20020722",
+    "deleteDate": "2002-07-22",
+    "cs_hops": 2
+  },
+  {
+    "name": "Capital.e AG",
+    "ehraid": 596454,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.332.824&lang=de&shabdatum=20040526",
+    "deleteDate": "2004-05-26",
+    "cs_hops": 2
+  },
+  {
+    "name": "SALVATURONE AG",
+    "ehraid": 591108,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.314.619&lang=de&shabdatum=20071122",
+    "deleteDate": "2007-11-22",
+    "cs_hops": 1
+  },
+  {
+    "name": "Acuance Ltd",
+    "ehraid": 797230,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-112.435.144&lang=de&shabdatum=20070928",
+    "deleteDate": "2007-09-28",
+    "cs_hops": 1
+  },
+  {
+    "name": "Credit Suisse PSL GmbH",
+    "ehraid": 957663,
+    "legalSeat": "Zürich",
+    "legalFormId": 4,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-115.107.222&lang=de&shabdatum=20211102",
+    "deleteDate": "2021-11-02",
+    "cs_hops": 1
+  },
+  {
+    "name": "CS International Advisors AG",
+    "ehraid": 1162320,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-155.163.741&lang=de&shabdatum=20141219",
+    "deleteDate": "2014-12-19",
+    "cs_hops": 1
+  },
+  {
+    "name": "Clariden Leu Immobilien AG",
+    "ehraid": 377443,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.490.486&lang=de&shabdatum=20120628",
+    "deleteDate": "2012-06-28",
+    "cs_hops": 1
+  },
+  {
+    "name": "Clariden Leu Metall AG",
+    "ehraid": 997767,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-116.149.766&lang=de&shabdatum=20120628",
+    "deleteDate": "2012-06-28",
+    "cs_hops": 1
+  },
+  {
+    "name": "SGK Management AG",
+    "ehraid": 267693,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.953.090&lang=de&shabdatum=20120628",
+    "deleteDate": "2012-06-28",
+    "cs_hops": 1
+  },
+  {
+    "name": "Clariden Leu AG",
+    "ehraid": 35684,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.833.522&lang=de&shabdatum=20120405",
+    "deleteDate": "2012-04-05",
+    "cs_hops": 1
+  },
+  {
+    "name": "PBS Privat Bank Schweiz AG",
+    "ehraid": 468000,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.866.869&lang=de&shabdatum=20031229",
+    "deleteDate": "2003-12-29",
+    "cs_hops": 2
+  },
+  {
+    "name": "BGP Banca di Gestione Patrimoniale SA",
+    "ehraid": 501204,
+    "legalSeat": "Lugano",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://ti.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.328.052&lang=de&shabdatum=20070201",
+    "deleteDate": "2007-02-01",
+    "cs_hops": 2
+  },
+  {
+    "name": "Bank Hofmann AG",
+    "ehraid": 81846,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.841.295&lang=de&shabdatum=20070201",
+    "deleteDate": "2007-02-01",
+    "cs_hops": 2
+  },
+  {
+    "name": "Bank für Handel und Effekten",
+    "ehraid": 13663,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-100.081.306&lang=de&shabdatum=20030721",
+    "deleteDate": "2003-07-21",
+    "cs_hops": 3
+  },
+  {
+    "name": "Credit Suisse Fides",
+    "ehraid": 390785,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.977.049&lang=de&shabdatum=20070201",
+    "deleteDate": "2007-02-01",
+    "cs_hops": 2
+  },
+  {
+    "name": "Bank Leu AG",
+    "ehraid": 419617,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-105.940.684&lang=de&shabdatum=20070201",
+    "deleteDate": "2007-02-01",
+    "cs_hops": 2
+  },
+  {
+    "name": "Baugesellschaft zum Brunnen",
+    "ehraid": 15312,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.349.164&lang=de&shabdatum=20041104",
+    "deleteDate": "2004-11-04",
+    "cs_hops": 3
+  },
+  {
+    "name": "Clariden CPC Ltd",
+    "ehraid": 628391,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-109.280.326&lang=de&shabdatum=20101208",
+    "deleteDate": "2010-12-08",
+    "cs_hops": 2
+  },
+  {
+    "name": "Domolim Holding AG",
+    "ehraid": 46449,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.214.785&lang=de&shabdatum=20101208",
+    "deleteDate": "2010-12-08",
+    "cs_hops": 2
+  },
+  {
+    "name": "S.I. Avenue de Rumine 37 S.A.",
+    "ehraid": 175312,
+    "legalSeat": "Lausanne",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://prestations.vd.ch/pub/101266/extract?lang=FR&companyOfsUid=CHE-103.213.716",
+    "deleteDate": "2010-12-08",
+    "cs_hops": 2
+  },
+  {
+    "name": "Clariden Leu Beteiligungen AG",
+    "ehraid": 389708,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.540.836&lang=de&shabdatum=20101208",
+    "deleteDate": "2010-12-08",
+    "cs_hops": 2
+  },
+  {
+    "name": "Credit Suisse International Investment Advisors Ltd",
+    "ehraid": 839113,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-112.964.862&lang=de&shabdatum=20110705",
+    "deleteDate": "2011-07-05",
+    "cs_hops": 1
+  },
+  {
+    "name": "Stadion Zürich AG",
+    "ehraid": 77348,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-102.814.439&lang=de&shabdatum=20100712",
+    "deleteDate": "2010-07-12",
+    "cs_hops": 1
+  },
+  {
+    "name": "Credit Suisse (International) Holding AG",
+    "ehraid": 390377,
+    "legalSeat": "Zug",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zg.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.867.108&lang=de&shabdatum=20100706",
+    "deleteDate": "2010-07-06",
+    "cs_hops": 1
+  },
+  {
+    "name": "Credit Suisse First Boston Management AG",
+    "ehraid": 399185,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-101.994.824&lang=de&shabdatum=20060706",
+    "deleteDate": "2006-07-06",
+    "cs_hops": 2
+  },
+  {
+    "name": "Credit Suisse First Boston Services AG",
+    "ehraid": 399275,
+    "legalSeat": "Zürich",
+    "legalFormId": 3,
+    "status": "GELOESCHT",
+    "cantonalExcerptWeb": "https://zh.chregister.ch/cr-portal/auszug/zefix.xhtml?uid=CHE-103.426.749&lang=de&shabdatum=20060706",
+    "deleteDate": "2006-07-06",
+    "cs_hops": 2
+  }
+]
